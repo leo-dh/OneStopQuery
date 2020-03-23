@@ -13,7 +13,13 @@
 				@click="toggleMenuOpen"
 				v-if="$store.state.mobile"
 			/>
-
+			<transition name="fade">
+				<div
+					class="overlay"
+					v-if="$store.state.menuOpen"
+					@click="toggleMenuOpen()"
+				></div>
+			</transition>
 			<transition name="slide">
 				<ul v-if="!$store.state.mobile || $store.state.menuOpen">
 					<li v-for="route in routes" :key="route.id">
@@ -94,6 +100,16 @@ export default {
 	transform: translate(-100%, 0);
 }
 
+/* Animations */
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+	opacity: 0;
+}
+
 /* Components */
 #logo {
 	font-family: "Fredoka One", "Open Sans";
@@ -101,18 +117,19 @@ export default {
 	font-size: 1.5rem;
 	height: 10vh;
 	color: black;
-	background: lightblue;
+	background: var(--aquamarine);
 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding-bottom: 0.1em;
 	position: relative;
+	z-index: 1;
 }
 .container {
 	display: flex;
 	flex-direction: column;
-	position: relative;
+	/* position: relative; */
 }
 img {
 	height: 0.8em;
@@ -137,13 +154,22 @@ ul li a {
 	text-decoration: none;
 	color: black;
 }
-
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(1, 1, 1, 0.5);
+	z-index: 0;
+}
 #menu {
 	position: absolute;
 	right: 0.5em;
 	top: calc((10vh - 1.5em) / 2);
 	height: 1.5em;
 	cursor: pointer;
+	z-index: 2;
 }
 
 /* media queries */
@@ -154,7 +180,7 @@ ul li a {
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 5%;
-		background: lightblue;
+		background: var(--aquamarine);
 	}
 	ul {
 		position: unset;
@@ -162,7 +188,7 @@ ul li a {
 		align-self: center;
 		display: flex;
 		flex-direction: row;
-		background: lightblue;
+		background: var(--aquamarine);
 	}
 	li {
 		padding: 0 1em;

@@ -2,12 +2,7 @@
 	<div id="app">
 		<NavBar />
 		<div class="main">
-			<transition name="fade">
-				<div class="overlay" v-if="$store.state.menuOpen"></div>
-			</transition>
-			<div class="content">
-				<router-view />
-			</div>
+			<router-view />
 		</div>
 	</div>
 </template>
@@ -48,15 +43,10 @@ export default {
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap");
+@import url("./assets/styles/variables.css");
+
 /* Animations */
-.fade-enter-active,
-.fade-leave-active {
-	transition: opacity 0.5s;
-}
-.fade-enter,
-.fade-leave-to {
-	opacity: 0;
-}
+
 /* Components */
 * {
 	box-sizing: border-box;
@@ -84,21 +74,5 @@ export default {
 
 #app > .main {
 	grid-area: main;
-	padding: 1em;
-}
-
-.content {
-	z-index: -2;
-	position: relative;
-}
-
-.overlay {
-	position: fixed;
-	background: rgba(0, 0, 0, 0.6);
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	z-index: -1;
 }
 </style>

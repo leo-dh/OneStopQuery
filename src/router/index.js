@@ -1,10 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import GetStarted from "@/views/GetStarted.vue";
-import About from "@/views/About.vue";
-import Feedback from "@/views/Feedback.vue";
-import Chat from "@/views/Chat.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -16,22 +12,24 @@ const routes = [
 	{
 		path: "/getstarted",
 		name: "Get Started",
-		component: GetStarted
+		component: () =>
+			import(/*webpackChunkName:"getstarted" */ "@/views/GetStarted.vue")
 	},
 	{
 		path: "/aboutus",
 		name: "About us",
-		component: About
+		component: () => import(/*webpackChunkName:"aboutus" */ "@/views/About.vue")
 	},
 	{
 		path: "/feedback",
 		name: "Feedback",
-		component: Feedback
+		component: () =>
+			import(/*webpackChunkName:"feedback" */ "@/views/Feedback.vue")
 	},
 	{
 		path: "/chat",
 		name: "Chat Now",
-		component: Chat
+		component: () => import(/*webpackChunkName:"chat" */ "@/views/Chat.vue")
 	}
 ];
 
