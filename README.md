@@ -1,19 +1,10 @@
-# onestopquery
+# Single Page Application Landing Page
 
-## Project setup
-```
-npm install
-```
+## Description
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Landing Page made with VueJS.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Credits
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Icons are taken from https://linearicons.com with Perxis (https://perxis.com) as the creator.
+- Drawings taken from https://undraw.co/

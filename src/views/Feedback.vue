@@ -1,9 +1,8 @@
 <template>
 	<div>
-		<h1>About Us</h1>
+		<h1>Feedback</h1>
 	</div>
 </template>
-
 <script>
 export default {};
 </script>
