@@ -176,7 +176,7 @@ ul li a {
 @media screen and (min-width: 900px) {
 	.container {
 		flex-direction: row;
-		height: 10vh;
+		min-height: 10vh;
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 5%;

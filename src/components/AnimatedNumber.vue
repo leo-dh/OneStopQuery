@@ -1,5 +1,5 @@
 <template>
-	<span ref="num">
+	<span>
 		{{ animatedValue }}
 	</span>
 </template>
@@ -27,14 +27,16 @@ export default {
 	},
 	mounted() {
 		this.observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					this.tween(0, this.value);
-				}
+			entries => {
+				if (entries[0].intersectionRatio <= 0) return;
+				this.tween(0, this.value);
 			},
-			{ threshold: 0.5 }
+			{ threshold: 0.9 }
 		);
-		this.observer.observe(this.$refs.num);
+		this.observer.observe(this.$el);
+	},
+	beforeDestroy() {
+		this.observer.disconnect();
 	},
 	methods: {
 		tween(startValue, endValue) {
