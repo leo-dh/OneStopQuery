@@ -12,7 +12,8 @@
 				</h1>
 				<p>
 					Our agents are equipped with the skills to deal with a variety of
-					issues. Talk to them to find out more!
+					issues. <br />
+					Talk to them to find out more!
 				</p>
 				<button class="btn-primary">Chat Now</button>
 			</div>
@@ -22,21 +23,36 @@
 			<!-- 1 sentence to describe the company -> Your one stop consultant for common household problems ...  -->
 			<!-- Years of experience, goals blah blah -->
 			<!-- Cards -> Types of problems that the company handles, no. of positive feedback, no. of agents -->
-			<h2>About Us</h2>
+			<img src="../assets/images/undraw_team_work_k80m.svg" alt="team" />
+			<h2>About <span class="salmontext">OneStopQuery</span></h2>
 			<p>
 				We aim to be your one stop consultant for all your common problems. We
 				have been operating since 2015 and has been solving a variety of
 				requests since then.
 			</p>
 			<div class="statistics">
-				<span class="descriptionnumber" id="stat1num">5</span>
+				<AnimatedNumber class="descriptionnumber" id="stat1num" :value="5" />
 				<span class="descriptiontext" id="stat1text">years</span>
-				<span class="descriptionnumber" id="stat2num">40</span>
+				<AnimatedNumber class="descriptionnumber" id="stat2num" :value="40" />
 				<span class="descriptiontext" id="stat2text">agents</span>
-				<span class="descriptionnumber" id="stat3num">95678</span>
-				<span class="descriptiontext" id="stat3text">resolved problems</span>
-				<span class="descriptionnumber" id="stat4num">10000</span>
-				<span class="descriptiontext" id="stat4text">registered users</span>
+				<AnimatedNumber
+					class="descriptionnumber"
+					id="stat3num"
+					:value="95678"
+				/>
+				<span class="descriptiontext" id="stat3text"
+					>resolved <br />
+					problems</span
+				>
+				<AnimatedNumber
+					class="descriptionnumber"
+					id="stat4num"
+					:value="10000"
+				/>
+				<span class="descriptiontext" id="stat4text"
+					>registered <br />
+					users</span
+				>
 			</div>
 		</div>
 		<div class="carousel">
@@ -49,10 +65,14 @@
 </template>
 
 <script>
-export default {};
+import AnimatedNumber from "@/components/AnimatedNumber";
+export default {
+	components: { AnimatedNumber }
+};
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Oswald&display=swap");
 .container {
 	display: grid;
 	grid-template-areas:
@@ -68,7 +88,7 @@ export default {};
 		"hero-text";
 	align-items: center;
 	justify-items: center;
-	padding: 1em 1.5em;
+	padding: 2em 1.5em;
 }
 .hero img {
 	width: 100%;
@@ -113,8 +133,32 @@ export default {};
 
 .description {
 	background: var(--lightgrey);
+	padding: 2em 1.5em;
+	display: grid;
+	grid-template-areas:
+		"descriptionimage"
+		"descriptionheader"
+		"descriptiontext"
+		"statistics";
 }
-
+.description img {
+	width: 100%;
+	padding: 1em;
+	grid-area: descriptionimage;
+	align-self: center;
+}
+.description h2 {
+	grid-area: descriptionheader;
+	padding: 0.5em 1rem;
+	align-self: center;
+}
+.description p {
+	grid-area: descriptiontext;
+	padding: 0 1rem;
+}
+.salmontext {
+	color: var(--salmon);
+}
 .statistics {
 	display: grid;
 	grid-template-areas:
@@ -122,6 +166,10 @@ export default {};
 		"stat1text stat2text"
 		"stat3num stat4num"
 		"stat3text stat4text";
+	padding: 1em 0;
+	grid-area: statistics;
+	gap: 0 1em;
+	grid-template-columns: 1fr 1fr;
 }
 
 #stat1num {
@@ -149,11 +197,49 @@ export default {};
 	grid-area: stat4text;
 }
 
+.descriptionnumber {
+	font-family: "Oswald", sans-serif;
+	font-size: 3rem;
+	text-align: center;
+	margin-bottom: 0.7rem;
+	color: var(--salmon);
+}
+.descriptiontext {
+	text-transform: uppercase;
+	text-align: center;
+}
+#stat1text,
+#stat2text {
+	margin-bottom: 1.2em;
+}
+
 /* Media Query */
 @media screen and (min-width: 768px) {
 	.hero {
 		grid-template-areas: "hero-text hero-image";
 		grid-template-columns: 1fr 1fr;
+	}
+	.description {
+		grid-template-areas:
+			"descriptionimage descriptionheader"
+			"descriptionimage descriptiontext"
+			"descriptionimage statistics";
+		grid-template-columns: 1fr 1fr;
+	}
+	.description h2,
+	.description p {
+		text-align: center;
+		width: 85%;
+		justify-self: center;
+	}
+	.description h2,
+	.description p,
+	.statistics {
+		padding: 0 2em;
+	}
+	.description h2 {
+		padding-bottom: 0.7em;
+		align-self: flex-end;
 	}
 }
 </style>
