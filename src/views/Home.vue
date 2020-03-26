@@ -31,11 +31,19 @@
 				requests since then.
 			</p>
 			<div class="statistics">
-				<AnimatedNumber class="descriptionnumber" id="stat1num" :value="5" />
+				<animatedNumber-item
+					class="descriptionnumber"
+					id="stat1num"
+					:value="5"
+				/>
 				<span class="descriptiontext" id="stat1text">years</span>
-				<AnimatedNumber class="descriptionnumber" id="stat2num" :value="40" />
+				<animatedNumber-item
+					class="descriptionnumber"
+					id="stat2num"
+					:value="40"
+				/>
 				<span class="descriptiontext" id="stat2text">agents</span>
-				<AnimatedNumber
+				<animatedNumber-item
 					class="descriptionnumber"
 					id="stat3num"
 					:value="95678"
@@ -44,7 +52,7 @@
 					>resolved <br />
 					problems</span
 				>
-				<AnimatedNumber
+				<animatedNumber-item
 					class="descriptionnumber"
 					id="stat4num"
 					:value="10000"
@@ -55,7 +63,11 @@
 				>
 			</div>
 		</div>
-		<div class="carousel">
+		<div class="categories">
+			<h2>
+				We are equipped with the skills to handle a variety of problems
+			</h2>
+			<carousel-item />
 			<!-- carousel with each category  -->
 		</div>
 		<div class="calltoaction">
@@ -66,8 +78,12 @@
 
 <script>
 import AnimatedNumber from "@/components/AnimatedNumber";
+import Carousel from "@/components/Carousel";
 export default {
-	components: { AnimatedNumber }
+	components: {
+		"animatedNumber-item": AnimatedNumber,
+		"carousel-item": Carousel
+	}
 };
 </script>
 
@@ -211,6 +227,10 @@ export default {
 #stat1text,
 #stat2text {
 	margin-bottom: 1.2em;
+}
+.categories {
+	background-color: var(--peach);
+	padding: 1em 0;
 }
 
 /* Media Query */

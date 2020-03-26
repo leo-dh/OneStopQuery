@@ -28,7 +28,7 @@
 							@click.native="$store.state.mobile ? toggleMenuOpen() : null"
 						>
 							<img
-								:src="require(`@/assets/icons/SVG/${route.imagepath}`)"
+								:src="require(`@/assets/${route.imagepath}`)"
 								:alt="`icon of ${route.name}`"
 							/>
 							{{ route.name }}</router-link
@@ -52,31 +52,31 @@ export default {
 					id: 0,
 					path: "",
 					name: "Home",
-					imagepath: "home.svg"
+					imagepath: "icons/SVG/home.svg"
 				},
 				{
 					id: 1,
 					path: "getstarted",
 					name: "Get Started",
-					imagepath: "book.svg"
+					imagepath: "icons/SVG/book.svg"
 				},
 				{
 					id: 2,
 					path: "aboutus",
 					name: "About Us",
-					imagepath: "user.svg"
+					imagepath: "icons/SVG/user.svg"
 				},
 				{
 					id: 3,
 					path: "feedback",
 					name: "Feedback",
-					imagepath: "thumbs-up.svg"
+					imagepath: "icons/SVG/thumbs-up.svg"
 				},
 				{
 					id: 4,
 					path: "chat",
 					name: "Chat Now",
-					imagepath: "bubble.svg"
+					imagepath: "icons/SVG/bubble.svg"
 				}
 			]
 		};

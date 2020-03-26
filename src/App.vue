@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<NavBar />
+		<navbar-item />
 		<div class="main">
 			<router-view />
 		</div>
@@ -11,7 +11,7 @@ import { mapActions } from "vuex";
 import NavBar from "@/components/NavBar";
 export default {
 	components: {
-		NavBar
+		"navbar-item": NavBar
 	},
 	data() {
 		return {};
