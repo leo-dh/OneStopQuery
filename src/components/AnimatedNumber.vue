@@ -11,27 +11,28 @@ export default {
 	props: {
 		value: {
 			type: Number,
-			required: true
-		}
+			required: true,
+		},
 	},
 	data() {
 		return {
 			animatedValue: 0,
-			observer: null
+			observer: null,
+			animatedCount: 0,
 		};
 	},
 	watch: {
 		value(newValue, oldValue) {
 			this.tween(oldValue, newValue);
-		}
+		},
 	},
 	mounted() {
 		this.observer = new IntersectionObserver(
-			entries => {
+			(entries) => {
 				if (entries[0].intersectionRatio <= 0) return;
-				this.tween(0, this.value);
+				if (this.animatedCount < 2) this.tween(0, this.value);
 			},
-			{ threshold: 0.9 }
+			{ threshold: [0] }
 		);
 		this.observer.observe(this.$el);
 	},
@@ -48,13 +49,14 @@ export default {
 			}
 			new TWEEN.Tween({ animatedValue: startValue })
 				.to({ animatedValue: endValue }, 500)
-				.onUpdate(function() {
+				.onUpdate(function () {
 					vm.animatedValue = this._object.animatedValue.toFixed(0);
 				})
 				.start();
 
 			animate();
-		}
-	}
+			this.animatedCount++;
+		},
+	},
 };
 </script>

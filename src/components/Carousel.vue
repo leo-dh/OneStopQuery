@@ -1,13 +1,5 @@
 <template>
 	<div class="carousel">
-		<img
-			class="nav-left"
-			src="../assets/icons/SVG/chevron-left.svg"
-			alt="left arrow"
-			@click="moveCarousel(-1)"
-			:disabled="headOfList"
-			v-if="arrowsNeeded"
-		/>
 		<div class="carouselCardsWrapper" id="carouselCardsWrapper">
 			<div class="carouselCards" id="carouselCards">
 				<carouselCard-item
@@ -18,14 +10,24 @@
 				/>
 			</div>
 		</div>
-		<img
-			src="../assets/icons/SVG/chevron-right.svg"
-			alt=""
-			class="nav-right"
-			@click="moveCarousel(1)"
-			:disabled="endOfList"
-			v-if="arrowsNeeded"
-		/>
+		<div class="carousel-nav">
+			<img
+				class="nav-left"
+				src="../assets/icons/SVG/chevron-left.svg"
+				alt="left arrow"
+				@click="moveCarousel(-1)"
+				:disabled="headOfList"
+				v-if="arrowsNeeded"
+			/>
+			<img
+				src="../assets/icons/SVG/chevron-right.svg"
+				alt=""
+				class="nav-right"
+				@click="moveCarousel(1)"
+				:disabled="endOfList"
+				v-if="arrowsNeeded"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -33,7 +35,7 @@
 import CarouselCard from "@/components/CarouselCard";
 export default {
 	components: {
-		"carouselCard-item": CarouselCard
+		"carouselCard-item": CarouselCard,
 	},
 	data() {
 		return {
@@ -42,43 +44,43 @@ export default {
 					id: 0,
 					title: "Utilities",
 					imagepath: "icons/SVG/drop.svg",
-					description: "icon of water droplet"
+					description: "icon of water droplet",
 				},
 				{
 					id: 1,
 					title: "Education",
 					imagepath: "icons/SVG/graduation-hat.svg",
-					description: "icon of graduation hat"
+					description: "icon of graduation hat",
 				},
 				{
 					id: 2,
 					title: "Phone Billing",
 					imagepath: "icons/SVG/phone-handset.svg",
-					description: "icon of phone"
+					description: "icon of phone",
 				},
 				{
 					id: 3,
 					title: "Internet Billing",
 					imagepath: "icons/SVG/laptop.svg",
-					description: "icon of laptop"
+					description: "icon of laptop",
 				},
 				{
 					id: 4,
 					title: "Housing",
 					imagepath: "icons/SVG/apartment.svg",
-					description: "icon of apartment"
+					description: "icon of apartment",
 				},
 				{
 					id: 5,
 					title: "Pest",
 					imagepath: "icons/SVG/bug.svg",
-					description: "icon of bug"
-				}
+					description: "icon of bug",
+				},
 			],
 			offset: 0,
 			paginationFactor: null,
 			carouselSize: null,
-			arrowsNeeded: null
+			arrowsNeeded: null,
 		};
 	},
 	mounted() {
@@ -95,7 +97,7 @@ export default {
 				this.offset <=
 				this.paginationFactor * -1 * (this.cards.length - this.carouselSize)
 			);
-		}
+		},
 	},
 	methods: {
 		moveCarousel(direction) {
@@ -127,7 +129,7 @@ export default {
 		},
 		getArrowsNeeded() {
 			this.arrowsNeeded = this.carouselSize < this.cards.length;
-		}
+		},
 	},
 	created() {
 		window.addEventListener("resize", () => {
@@ -144,7 +146,7 @@ export default {
 		});
 	},
 	watch: {
-		arrowsNeeded: function() {
+		arrowsNeeded: function () {
 			if (!this.arrowsNeeded) {
 				document.getElementById("carouselCardsWrapper").style =
 					"justify-content: center";
@@ -152,39 +154,32 @@ export default {
 				document.getElementById("carouselCardsWrapper").style =
 					"justify-content: initial";
 			}
-		}
-	}
+		},
+	},
 };
 </script>
 
 <style scoped>
 .carousel {
-	display: grid;
-	grid-template-areas: "leftarrow carouselCards rightarrow";
-	grid-template-columns: auto 1fr auto;
 	min-height: 30vh;
-	background-color: var(--peach);
+	display: grid;
 }
 .carouselCardsWrapper {
-	grid-area: carouselCards;
 	overflow: hidden;
-	display: flex;
+	display: grid;
 }
 .carouselCards {
 	display: flex;
 	flex-direction: row;
-	padding: 0 0.5em;
+	margin: 0 2em;
 }
 .carousel-card {
 	min-width: 200px;
-	margin: 1em;
+	min-height: 200px;
+
+	/* margin: 1em 1.3em; */
+	margin: 25px;
 	border-radius: 1em;
-}
-.nav-left {
-	grid-area: leftarrow;
-}
-.nav-right {
-	grid-area: rightarrow;
 }
 .nav-left[disabled],
 .nav-right[disabled] {
@@ -193,9 +188,16 @@ export default {
 }
 .nav-left,
 .nav-right {
-	width: 40px;
+	width: 30px;
 	align-self: center;
 	justify-self: center;
 	cursor: pointer;
+	margin: 0 0.5em;
+}
+.carousel-nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 2em 0;
 }
 </style>
