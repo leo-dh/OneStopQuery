@@ -15,14 +15,12 @@
 					issues. <br />
 					Talk to them to find out more!
 				</p>
-				<button class="btn-primary">Chat Now</button>
+				<router-link to="/chat" class="btn-primary" tag="button"
+					>Chat Now</router-link
+				>
 			</div>
 		</div>
 		<div class="description">
-			<!-- About Us Write Up -->
-			<!-- 1 sentence to describe the company -> Your one stop consultant for common household problems ...  -->
-			<!-- Years of experience, goals blah blah -->
-			<!-- Cards -> Types of problems that the company handles, no. of positive feedback, no. of agents -->
 			<img src="../assets/images/undraw_team_work_k80m.svg" alt="team" />
 			<h2>About <span class="salmontext">OneStopQuery</span></h2>
 			<p>
@@ -128,9 +126,12 @@
 					What are you waiting for? <br />
 					Chat with us now and let us help you!
 				</h2>
-				<button class="calltoaction__content__button btn-primary">
-					Talk to Us Now
-				</button>
+				<router-link
+					to="/chat"
+					class="calltoaction__content__button btn-primary"
+					tag="button"
+					>Talk to Us Now</router-link
+				>
 			</div>
 			<!-- probably a form or some sort linking to similar to the chat now page -->
 		</div>
