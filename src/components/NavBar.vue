@@ -1,7 +1,10 @@
 <template>
   <header>
     <div class="container">
-      <router-link :to="`/${routes[0].path}`" id="logo"
+      <router-link
+        :to="`/${routes[0].path}`"
+        id="logo"
+        @click.native="$store.state.menuOpen ? toggleMenuOpen() : null"
         >OneStopQuery</router-link
       >
       <img
